@@ -2,7 +2,9 @@ name: Build and Test .Net Application
 
 on:
   push:
-    branches:
+    branches:    
+      - '*'         # matches every branch
+      - '*/*'       # matches every branch containing a single '/'
       - '!master'   # excludes master
 jobs:
   build:
