@@ -13,7 +13,9 @@ jobs:
 
       - name: Build Docker image
         run: |
-          docker build HelloDocker\Dockerfile --tag gcr.io/${{ secrets.GCLOUD_PROJECT }}/${{ secrets.GCLOUD_APP_NAME }}
+          cd HelloDocker
+          ls
+          docker build . -t gcr.io/${{ secrets.GCLOUD_PROJECT }}/${{ secrets.GCLOUD_APP_NAME }}
       - name: Authenticate into Google Cloud Platform
         uses: GoogleCloudPlatform/github-actions/setup-gcloud@master
         with:
