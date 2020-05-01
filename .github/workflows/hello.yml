@@ -14,8 +14,39 @@ jobs:
       with:
         dotnet-version: 3.1.101
     - name: Build the app
-      run: | 
-        dotnet build -c Release
-        ls -l
+      run: dotnet build -c Release
+
+    - name: Download the test artifact
+      uses: actions/upload-artifact@v1.0.0
+      with:
+        name: hellodockertest
+        path: ./HelloDocker/bin/Release/netcoreapp3.1/
+  
+  test:
+    runs-on: ubuntu-latest
+    needs: [build]
+
+    steps:
+    - name: Checkout the code
+      uses: actions/checkout@v2
+    - name: Setup .NET Core
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 3.1.101
+
+    - name: Download artifact
+      uses: actions/download-artifact@v1.0.0
+      with:
+        name: hellodockertest
+
+    - name: Execute Tests
+      run: dotnet run HelloDockerTest.dll
+
+
+
+
+
+
+        
        
       
