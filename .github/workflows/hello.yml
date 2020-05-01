@@ -1,7 +1,9 @@
-name: Build and Test .NET Application
+name: Build and Test .Net Application
 
-on: [push]
-
+on:
+  push:
+    branches:
+      - '!master'   # excludes master
 jobs:
   build:
     runs-on: ubuntu-latest
