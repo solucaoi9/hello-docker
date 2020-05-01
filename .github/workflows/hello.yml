@@ -38,6 +38,6 @@ jobs:
         name: tests
 
     - name: Execute Tests
-      run: dotnet tests ./test/HelloDockerTest.dll
+      run: dotnet test ./tests/HelloDockerTest.dll
        
       
