@@ -1,0 +1,19 @@
+name: Hello Workflow
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v2
+    - name: Configurar .NET Core
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 3.1.101
+    - name: Compilar app
+      run: dotnet build -c Release
+      
+    
+    
