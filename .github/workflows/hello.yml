@@ -27,8 +27,6 @@ jobs:
     needs: [build]
 
     steps:
-    - name: Checkout the code
-      uses: actions/checkout@v2
     - name: Setup .NET Core
       uses: actions/setup-dotnet@v1
       with:
@@ -40,6 +38,6 @@ jobs:
         name: hellodockertest
 
     - name: List files
-      run: ls -l
+      run: ls -l hellodockertest
        
       
