@@ -2,10 +2,8 @@ name: Build and Test .Net Application
 
 on:
   push:
-    branches:    
-      - '*'         # matches every branch
-      - '*/*'       # matches every branch containing a single '/'
-      - '!master'   # excludes master
+    branches-ignore: 
+      - master
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -20,11 +18,11 @@ jobs:
     - name: Build the app
       run: dotnet build -c Release
 
-    - name: Upload the test artifact
+    - name: Upload Test Artifacts
       uses: actions/upload-artifact@v1.0.0
       with:
-        name: tests
-        path: ./HelloDockerTest/bin/Release/netcoreapp3.1/
+        name: hellodockertest
+        path: ./HelloDockerTest/bin/Release/netcoreapp3.1/**
   
   test:
     runs-on: ubuntu-latest
@@ -36,10 +34,10 @@ jobs:
       with:
         dotnet-version: 3.1.101
 
-    - name: Download artifact
+    - name: Download Artifacts
       uses: actions/download-artifact@v1.0.0
       with:
-        name: tests
+        name: hellodockertest
 
     - name: Execute Tests
       run: dotnet test ./tests/HelloDockerTest.dll
